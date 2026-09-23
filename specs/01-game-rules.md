@@ -2,6 +2,8 @@
 
 Build the game's rules as pure JavaScript modules under `src/core/`, with `node:test` suites under
 `test/core/`. No DOM, no canvas, no timers: the UI (a later feature) drives this code.
+The state is plain data, including the random generator's state (for example a number), so the
+same state and the same action always give the same result.
 
 ## What it must do
 

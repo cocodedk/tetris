@@ -29,7 +29,8 @@ current piece, and every effect is finished within one second.
 
 ## Limits
 
-- **Performance:** at most 600 live particles; the oldest are dropped first. Particles are reused
+- **Performance:** at most 1500 live particles, enough for a Tetris's whole burst (40 cells at
+  8 or more each, plus its extra burst); past that, the oldest are dropped first. Particles are reused
   from a pool rather than created per frame.
 - **Reduced motion:** when `prefers-reduced-motion: reduce` is set, there is no shake, no particles
   and no moving background; flashes and text stay, shortened. A settings toggle on the start screen
@@ -39,7 +40,7 @@ current piece, and every effect is finished within one second.
 ## Done when
 
 Tests cover, without a browser: each event type starting its effects; particles moving, fading
-and being removed at the end of their life; the 600 cap dropping the oldest; the shake's offset
+and being removed at the end of their life; a Tetris keeping at least 8 particles for every cleared cell; the 1500 cap dropping the oldest; the shake's offset
 decaying to zero; the hard-drop shake growing with distance; the Tetris and back-to-back texts;
 the combo text only from combo 2; the level-up changing the background hue; reduced mode starting
 no particles and no shake; and the toggle overriding the system setting.
