@@ -7,6 +7,7 @@
   --muted: #8a90b8;
   --accent: #5ee3ff;
   --side: clamp(64px, 18vw, 140px);
+  --footer: 22px;
 }
 
 html, body {
@@ -28,8 +29,8 @@ html, body {
   justify-content: center;
   align-items: start;
   gap: 8px;
-  height: 100vh;
-  height: 100dvh;
+  height: calc(100vh - var(--footer));
+  height: calc(100dvh - var(--footer));
   padding: 8px;
 }
 
@@ -64,7 +65,7 @@ html, body {
 .board-wrap {
   position: relative;
   aspect-ratio: 10 / 22;
-  height: min(calc(100dvh - 16px), calc((100vw - 2 * var(--side) - 32px) * 2.2));
+  height: min(calc(100dvh - 16px - var(--footer)),calc((100vw - 2 * var(--side) - 32px) * 2.2));
   touch-action: none;
 }
 
@@ -121,3 +122,14 @@ html, body {
 @keyframes fade-in { from { opacity: 0; } }
 
 .lang { color: var(--accent); font-size: 0.9rem; }
+
+.site-footer {
+  position: fixed;
+  inset: auto 0 0;
+  height: var(--footer);
+  line-height: var(--footer);
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.site-footer a { color: var(--accent); }

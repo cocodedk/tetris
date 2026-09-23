@@ -7,6 +7,9 @@ const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), '
 const en = read('index.html');
 const fa = read('fa/index.html');
 const urls = (html) => [...html.matchAll(/(?:src|href)="([^"]*)"/g)].map((m) => m[1]);
+// Only tags that make the browser fetch something; canonical, alternate and <a> links do not.
+const loads = (html) => [...html.matchAll(/<(?:script|img)\b[^>]*\bsrc="([^"]*)"|<link rel="(?:stylesheet|preconnect|icon)" href="([^"]*)"/g)]
+  .map((m) => m[1] ?? m[2]);
 
 test('the English page is lang="en", loads src/main.js and the stylesheet', () => {
   assert.match(en, /<html lang="en">/);
@@ -26,8 +29,8 @@ test('each page links to the other', () => {
 });
 
 test('only the Persian page loads from the network, and only the Vazirmatn font', () => {
-  assert.deepEqual(urls(en).filter((u) => /^(https?:)?\/\//.test(u)), []);
-  const remote = urls(fa).filter((u) => /^(https?:)?\/\//.test(u));
+  assert.deepEqual(loads(en).filter((u) => /^(https?:)?\/\//.test(u)), []);
+  const remote = loads(fa).filter((u) => /^(https?:)?\/\//.test(u));
   assert.ok(remote.some((u) => u.startsWith('https://fonts.googleapis.com/css2?family=Vazirmatn')));
   for (const u of remote) assert.match(u, /^https:\/\/fonts\.(googleapis|gstatic)\.com(\/|$)/);
 });
@@ -40,7 +43,9 @@ test('every data-i18n key on both pages is in the table', () => {
   }
 });
 
-test('both pages have the same structure apart from their head and links', () => {
-  const body = (html) => html.slice(html.indexOf('<body>')).replace(/href="[^"]*" hreflang="\w+" lang="\w+"/, '');
+test('both pages have the same structure apart from their head, links and footer', () => {
+  const body = (html) => html.slice(html.indexOf('<body>'))
+    .replace(/href="[^"]*" hreflang="\w+" lang="\w+"/, '')
+    .replace(/<footer[\s\S]*<\/footer>/, '');
   assert.equal(body(fa), body(en));
 });

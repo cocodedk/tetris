@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Push only to github.com/cocodedk/, and never rewrite or delete main.
+set -euo pipefail
+url="$2"
+# The whole URL must be exactly github.com/cocodedk/<repo>: no extra path segments, and dots
+# only between name characters, so neither "." nor ".." can climb out of the owner.
+url_pattern='^(https://github\.com/|git@github\.com:|ssh://git@github\.com/)cocodedk/[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*/?$'
+if ! [[ "$url" =~ $url_pattern ]]; then
+  echo "pre-push: refusing to push to $url (only github.com/cocodedk/<repo> is allowed)" >&2
+  exit 1
+fi
+
+zero=0000000000000000000000000000000000000000
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ "$remote_ref" = "refs/heads/main" ] || continue
+  if [ "$local_sha" = "$zero" ]; then
+    echo "pre-push: refusing to delete main" >&2
+    exit 1
+  fi
+  if [ "$remote_sha" != "$zero" ] && ! git merge-base --is-ancestor "$remote_sha" "$local_sha" 2>/dev/null; then
+    echo "pre-push: refusing to rewrite main (the remote tip is not an ancestor of $local_ref)" >&2
+    exit 1
+  fi
+done
+exit 0

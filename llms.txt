@@ -1,0 +1,24 @@
+# Tetris
+
+> Classic Tetris in the browser, with neon visual effects as its twist. Plain HTML, CSS and
+> JavaScript ES modules: no dependencies, no build step. English and Persian pages. Made by
+> Babak Bandpey at Cocode (https://cocode.dk). Licensed Apache-2.0.
+
+Game rules live in `src/core/` and effect state in `src/fx/`, both pure and tested with
+`node --test`; `src/ui/` draws to canvas and handles input.
+
+## Docs
+
+- [README](https://github.com/cocodedk/tetris/blob/main/README.md): what it is, controls, running locally, testing, layout
+- [Play (English)](https://cocodedk.github.io/tetris/): the live site
+- [Play (Persian)](https://cocodedk.github.io/tetris/fa/): the Persian page
+
+## Specs
+
+- [Product brief](https://github.com/cocodedk/tetris/blob/main/spec/brief.md): what the game is meant to be
+- [Feature specs](https://github.com/cocodedk/tetris/tree/main/specs): one file per feature, in build order
+
+## Optional
+
+- [Contributing](https://github.com/cocodedk/tetris/blob/main/CONTRIBUTING.md): house rules and workflow
+- [Security](https://github.com/cocodedk/tetris/blob/main/SECURITY.md): how to report a vulnerability
