@@ -20,9 +20,9 @@ same state and the same action always give the same result.
   ghost piece's landing row.
 - **Gravity and lock:** a step function `step(state, dt)` advances time in milliseconds. Gravity
   per level follows the guideline curve `(0.8 - (level-1)*0.007)^(level-1)` seconds per row. A
-  grounded piece locks after 500 ms; a move or rotation resets that delay, at most 15 times.
-  The count of resets starts again whenever the piece reaches a row lower than any it has reached
-  (the guideline's extended placement). Once 15 are spent, the piece locks as soon as it is grounded.
+  grounded piece locks after 500 ms; a move or rotation restarts that timer. Whatever happens, a
+  piece locks 2 seconds after it first touched the ground. Time left over in a `step` after a lock
+  carries into the next piece, so `step(state, 2000)` plays out the same as four 500 ms steps.
 - **Line clears:** full rows clear and the rows above fall. Score single 100, double 300,
   triple 500, Tetris 800, each × level. A back-to-back Tetris scores ×1.5. A combo adds
   50 × combo × level.
@@ -39,6 +39,6 @@ same state and the same action always give the same result.
 
 Tests cover each rule above, including at least: each piece's spawn, every wall-kick case of the
 I piece and one per other kick table, the O piece never kicking, the bag containing each piece
-once per 7, the same seed giving the same 14 pieces, hold's once-per-piece limit, lock delay and
-its 15-reset cap, all four clear scores, back-to-back and combo scores, the level-up at 10 lines,
+once per 7, the same seed giving the same 14 pieces, hold's once-per-piece limit, lock delay, its
+2-second limit, leftover time carrying over, all four clear scores, back-to-back and combo scores, the level-up at 10 lines,
 both game-over conditions, and the events each action reports.
