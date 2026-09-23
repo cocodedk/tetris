@@ -18,13 +18,16 @@ and no `provideContext`; do not use or polyfill them.
 1. `get_game` (read-only): the status (start, playing, paused, over), the board as 20 strings of
    10 characters (`.` empty, a piece letter otherwise), the current piece and its position, hold,
    the next five, score, level and lines.
-2. `list_placements` (read-only): every distinct place the current piece can come to rest, and,
-   when hold is allowed, every place for the piece hold would bring. Each has an `id`, `piece`,
-   `rotation`, `column`, `useHold`, and what it would do: `linesCleared`, `holes`, `height` (of the
-   stack after it), `bumpiness`. The ids are valid until the next piece.
+2. `list_placements` (read-only): every place the current piece reaches by rotating first, then
+   moving sideways, then dropping straight down (no tucks or spins), and, when hold is allowed,
+   the same for the piece hold would bring. Rotations that give the same cells count once, as the
+   lowest rotation number. Each has an `id` built from the placement itself
+   (`<H or ->r<rotation>c<column>`, for example `-r1c4`), `piece`, `rotation`, `column`,
+   `useHold`, and what it would do: `linesCleared`, `holes`, `height` (of the stack after it),
+   `bumpiness`.
 3. `place` (`{ id }`): puts the current piece there by the player's own actions (hold if needed,
    rotate, move, hard drop) and returns the new `get_game` result plus the events it caused. An
-   unknown or stale id answers `ok: false` with the valid ids.
+   id not in the current list answers `ok: false` with the valid ids.
 4. `new_game` (`{ seed?, turnBased? }`): starts a game. With `turnBased: true`, gravity and lock
    delay stop between placements, so a slow agent loses nothing to time; effects still play.
 
