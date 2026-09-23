@@ -33,7 +33,9 @@ Site URL https://cocodedk.github.io/tetris/ (English) and https://cocodedk.githu
 
 `.githooks/pre-commit` (runs `node --test`), `.githooks/commit-msg` (Conventional Commit subject),
 `.githooks/pre-push` (refuses a push URL outside `github.com/cocodedk/`, and refuses a force-push
-or deletion of `main`), all executable, and `scripts/install-hooks.sh` (sets `core.hooksPath`).
+or deletion of `main`), and `scripts/install-hooks.sh`, which makes the hooks executable
+(`chmod +x`) and sets `core.hooksPath`. Files are committed without the executable bit (the
+builder cannot set it); scripts are run as `bash scripts/<name>.sh`.
 
 ## SEO on both pages
 
@@ -63,8 +65,8 @@ the site URL. It never uses `--no-verify` or `--force`.
 
 ## Done when
 
-A test suite `test/repo.test.js` checks, from the files alone: every file above exists; the hooks
-and scripts are executable; `pre-push` names `cocodedk` and contains no `<OWNER>` placeholder;
+A test suite `test/repo.test.js` checks, from the files alone: every file above exists; `install-hooks.sh`
+makes the hooks executable and sets `core.hooksPath`; `pre-push` names `cocodedk` and contains no `<OWNER>` placeholder;
 `pages.yml` has `cancel-in-progress: false` and deploys only site files; both pages carry the
 canonical, hreflang, Open Graph, Twitter and JSON-LD tags with the right URLs; `sitemap.xml`
 lists both URLs; `og.png`'s PNG header says 1200×630; and `setup-repo.sh` contains no `--force`
