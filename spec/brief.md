@@ -23,7 +23,7 @@ Anyone who knows Tetris and wants a beautiful version that opens instantly from 
    player's reduced-motion setting.
 3. It works with a keyboard and with touch, in English and in Persian (right to left).
 4. It is a public GitHub repository, `cocodedk/tetris`, with green CI, hooks, the usual public
-   files, and a GitHub Pages site at https://cocodedk.github.io/tetris/ where the game is playable,
+   files, and a GitHub Pages site at https://tetris.cocode.dk/ where the game is playable,
    with complete SEO and a real 1200×630 social image.
 5. An AI agent can play it through WebMCP, choosing one placement per piece, in a turn-based mode.
 
@@ -35,6 +35,7 @@ Anyone who knows Tetris and wants a beautiful version that opens instantly from 
 4. `specs/04-github-and-pages.md` — everything the public repository and its site need, including
    the script the owner runs to publish it.
 5. `specs/05-webmcp.md` — tools an AI agent in the browser can use to play, one placement per piece.
+6. `specs/06-custom-domain.md` — every stated URL moves to the site's own domain.
 
 ## Left out on purpose
 
