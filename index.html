@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tetris</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <main class="game">
+    <aside class="side">
+      <h2 data-i18n="hold"></h2>
+      <canvas id="hold" class="mini hold"></canvas>
+      <button type="button" id="hold-btn" class="pad" data-i18n="hold"></button>
+      <button type="button" id="pause-btn" class="pad" data-i18n="pause"></button>
+    </aside>
+    <div class="board-wrap">
+      <canvas id="board"></canvas>
+      <div id="overlay" class="overlay">
+        <section id="screen-start" class="screen">
+          <h1 data-i18n="title"></h1>
+          <h2 data-i18n="controlsTitle"></h2>
+          <ul class="controls">
+            <li data-i18n="controlMove"></li>
+            <li data-i18n="controlSoft"></li>
+            <li data-i18n="controlHard"></li>
+            <li data-i18n="controlRotate"></li>
+            <li data-i18n="controlHold"></li>
+            <li data-i18n="controlPause"></li>
+            <li data-i18n="controlTouch"></li>
+          </ul>
+          <button type="button" id="start-btn" data-i18n="start"></button>
+          <a class="lang" href="fa/" hreflang="fa" lang="fa" data-i18n="otherLanguage"></a>
+        </section>
+        <section id="screen-pause" class="screen" hidden>
+          <h1 data-i18n="paused"></h1>
+          <button type="button" id="resume-btn" data-i18n="resume"></button>
+        </section>
+        <section id="screen-over" class="screen" hidden>
+          <h1 data-i18n="gameOver"></h1>
+          <p><span data-i18n="score"></span> <b id="final-score"></b></p>
+          <p><span data-i18n="best"></span> <b id="best-score"></b></p>
+          <button type="button" id="again-btn" data-i18n="playAgain"></button>
+        </section>
+      </div>
+    </div>
+    <aside class="side">
+      <h2 data-i18n="next"></h2>
+      <canvas id="next" class="mini next"></canvas>
+      <dl class="stats">
+        <dt data-i18n="score"></dt><dd id="score"></dd>
+        <dt data-i18n="level"></dt><dd id="level"></dd>
+        <dt data-i18n="lines"></dt><dd id="lines"></dd>
+      </dl>
+    </aside>
+  </main>
+</body>
+</html>

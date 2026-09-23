@@ -1,0 +1,111 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg: #0b0d1a;
+  --panel: #151935;
+  --text: #e8ebff;
+  --muted: #8a90b8;
+  --accent: #5ee3ff;
+  --side: clamp(64px, 18vw, 140px);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.4 system-ui, sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+:lang(fa) body, body:lang(fa) { font-family: Vazirmatn, system-ui, sans-serif; }
+
+.game {
+  display: grid;
+  grid-template-columns: var(--side) auto var(--side);
+  justify-content: center;
+  align-items: start;
+  gap: 8px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 8px;
+}
+
+.side { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.side h2 {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mini { width: 100%; background: var(--panel); border-radius: 6px; display: block; }
+.mini.hold { aspect-ratio: 4 / 3; }
+.mini.next { aspect-ratio: 4 / 13; max-height: 45dvh; object-fit: contain; }
+
+.pad {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 10px 4px;
+  border: 1px solid #2c3366;
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  touch-action: manipulation;
+}
+
+.stats { margin: 0; display: grid; gap: 2px; }
+.stats dt { font-size: 0.75rem; color: var(--muted); }
+.stats dd { margin: 0 0 6px; font-size: 1.1rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.board-wrap {
+  position: relative;
+  aspect-ratio: 10 / 22;
+  height: min(calc(100dvh - 16px), calc((100vw - 2 * var(--side) - 32px) * 2.2));
+  touch-action: none;
+}
+
+#board {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: var(--panel);
+  border-radius: 6px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: rgba(11, 13, 26, 0.94);
+  border-radius: 6px;
+  overflow: auto;
+  touch-action: pan-y;
+}
+.overlay[hidden] { display: none; }
+
+.screen { text-align: center; display: grid; gap: 10px; justify-items: center; }
+.screen[hidden] { display: none; }
+.screen h1 { margin: 0; font-size: 1.8rem; color: var(--accent); }
+.screen h2 { margin: 0; font-size: 0.9rem; color: var(--muted); }
+.screen p { margin: 0; }
+
+.controls { list-style: none; margin: 0; padding: 0; font-size: 0.72rem; color: var(--muted); }
+
+.screen button {
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--bg);
+  cursor: pointer;
+}
+
+.lang { color: var(--accent); font-size: 0.9rem; }
