@@ -10,6 +10,7 @@ import { createScreens } from './ui/screens.js';
 import { readBest, saveBest, readEffects, saveEffects } from './ui/storage.js';
 import { createFx, fxEvents, stepFx, gameOverDone } from './fx/effects.js';
 import { reducedMotion } from './fx/motion.js';
+import { initWebMcp } from './ui/webmcp.js';
 
 const MAX_DT = 50;
 const ACTIONS = {
@@ -29,8 +30,8 @@ let mode = 'start'; // 'start' | 'playing' | 'paused' | 'over'
 let overShown = false;
 let last = 0;
 
-function start() {
-  state = newGame(Date.now());
+function start({ seed = Date.now(), turnBased = false } = {}) {
+  state = newGame(seed, { turnBased });
   fx = newFx();
   mode = 'playing';
   overShown = false;
@@ -81,8 +82,8 @@ function pad(id, action) {
 }
 pad('hold-btn', 'hold');
 pad('pause-btn', 'pause');
-$('start-btn').addEventListener('click', start);
-$('again-btn').addEventListener('click', start);
+$('start-btn').addEventListener('click', () => start());
+$('again-btn').addEventListener('click', () => start());
 $('resume-btn').addEventListener('click', () => setPaused(false));
 $('fx-btn').addEventListener('click', toggleEffects);
 
@@ -122,3 +123,11 @@ screens.effects(fx.reduced);
 screens.gameOver(0, readBest());
 screens.show('start');
 requestAnimationFrame(frame);
+
+// Tools for an AI agent in this browser; does nothing without WebMCP.
+initWebMcp(document, {
+  read: () => ({ state, mode }),
+  perform,
+  start,
+  resume: () => setPaused(false),
+});

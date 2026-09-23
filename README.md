@@ -22,6 +22,21 @@ touch. Plain HTML, CSS and JavaScript: no install, no sign-up, no build step.
 
 On a touch screen: tap to rotate, drag to move, flick down to drop.
 
+## Play with an AI agent
+
+The page registers four [WebMCP](https://github.com/webmachinelearning/webmcp) tools
+(`src/ui/webmcp.js`), so an AI agent in your browser can play with the same moves your keys make:
+
+| Tool | What it does |
+|---|---|
+| `get_game` | The status, the board as 20 rows of 10 characters, the current piece, hold, the next five, score, level and lines. |
+| `list_placements` | Every place the current piece (or the held one) can go, each with an id and what it would do: lines cleared, holes, stack height, bumpiness. |
+| `place` | Puts the piece at one placement by id (hold, rotate, move, hard drop) and returns the new game and its events. |
+| `new_game` | Starts a game. `seed` repeats a piece sequence; `turnBased: true` stops gravity and the lock delay between placements, so a slow agent loses nothing to time. |
+
+WebMCP is a draft browser API, today only in Chrome with its WebMCP flag on. Without it the page
+registers nothing and plays as usual.
+
 ## Run it locally
 
 Any static server works. With Python:

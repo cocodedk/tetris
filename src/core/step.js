@@ -5,7 +5,7 @@ const down = (piece) => ({ ...piece, y: piece.y + 1 });
 
 // Advances one frame of `dt` ms (at most 50; the UI clamps it).
 export function step(state, dt) {
-  if (state.over || !state.current) return { ...state, events: [] };
+  if (state.over || !state.current || state.turnBased) return { ...state, events: [] };
   const { board } = state;
   if (!canPlace(board, down(state.current))) {
     const lockMs = state.lockMs + dt;

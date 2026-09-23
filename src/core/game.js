@@ -8,9 +8,11 @@ export const LOCK_DELAY_MS = 500;
 
 // The whole game is plain data; every action returns a new state whose
 // `events` lists what that action did.
-export function newGame(seed = 1) {
+// With `turnBased`, gravity and lock delay stop: a piece moves only when acted on.
+export function newGame(seed = 1, { turnBased = false } = {}) {
   const { queue, seed: rng } = fillQueue([], seed >>> 0, PREVIEW + 1);
   return spawnNext({
+    turnBased,
     board: emptyBoard(),
     current: null,
     queue,

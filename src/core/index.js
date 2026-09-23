@@ -4,3 +4,4 @@ export { ROTATIONS } from './kicks.js';
 export { newGame, nextPieces, ghostY } from './game.js';
 export { moveLeft, moveRight, softDrop, hardDrop, rotateCW, rotateCCW, hold } from './actions.js';
 export { step } from './step.js';
+export { listPlacements, playActions, boardStats } from './placements.js';
