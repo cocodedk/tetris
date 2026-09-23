@@ -35,6 +35,10 @@ and no `provideContext`; do not use or polyfill them.
 
 - The placement search and its numbers live in `src/core/` (pure, tested); the tool module is
   `src/ui/webmcp.js`, started once by `src/main.js`.
+- Input checks, exactly these: `get_game` and `list_placements` ignore their input. `place` needs
+  `id` to be a string. `new_game` accepts only the keys `seed` (an integer) and `turnBased` (true or
+  false), each optional. Anything else answers `ok: false` with what was expected. (The browser
+  itself refuses input that is not a JSON object before it reaches a tool.)
 - Without `document.modelContext` the module does nothing and shows nothing. One tool that fails to
   register does not stop the others. Nothing it does can throw into the page.
 - Add a "Play with an AI agent" section to the README naming the four tools and `turnBased`.
@@ -44,7 +48,7 @@ and no `provideContext`; do not use or polyfill them.
 Tests cover, without a browser: the placements for an empty board (the I piece has 17 distinct
 ones: 7 flat, 10 upright), a placement's `linesCleared` and `holes` on a prepared board, hold
 placements appearing only when hold is allowed, `place` landing the piece where its placement said
-and reporting the same events a hard drop does, a stale or unknown id and malformed input each
-answering `ok: false`, `turnBased` keeping the piece still across `step` calls, the module doing
+and reporting the same events a hard drop does, an id not in the list, a non-string id, and
+`new_game` with an unknown key or a wrongly typed `seed` or `turnBased` each answering `ok: false`, `turnBased` keeping the piece still across `step` calls, the module doing
 nothing without `document.modelContext`, and one refused registration leaving the other three
 registered (with a fake `document.modelContext`).
