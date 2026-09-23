@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-const DOM_MODULES = ['draw', 'input', 'touch', 'screens', 'storage'];
+const DOM_MODULES = ['draw', 'blocks', 'fx-draw', 'input', 'touch', 'screens', 'storage'];
 
 test('the drawing and input modules load without a browser', async () => {
   for (const name of DOM_MODULES) {

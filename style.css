@@ -108,4 +108,16 @@ html, body {
   cursor: pointer;
 }
 
+.screen button.toggle {
+  font-weight: 400;
+  font-size: 0.85rem;
+  padding: 6px 16px;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.overlay.fade-in { animation: fade-in 300ms ease-out; }
+@keyframes fade-in { from { opacity: 0; } }
+
 .lang { color: var(--accent); font-size: 0.9rem; }

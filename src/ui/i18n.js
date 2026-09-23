@@ -23,6 +23,8 @@ export const STRINGS = {
     controlHold: 'C or Shift hold',
     controlPause: 'P or Esc pause',
     controlTouch: 'Touch: tap rotates, drag moves, flick down drops',
+    effectsFull: 'Effects: full',
+    effectsReduced: 'Effects: reduced',
   },
   fa: {
     title: 'تتریس',
@@ -47,6 +49,8 @@ export const STRINGS = {
     controlHold: 'C یا Shift نگه داشتن',
     controlPause: 'P یا Esc مکث',
     controlTouch: 'لمسی: ضربه می‌چرخاند، کشیدن جابه‌جا می‌کند، کشیدن تند به پایین می‌اندازد',
+    effectsFull: 'جلوه‌ها: کامل',
+    effectsReduced: 'جلوه‌ها: کم',
   },
 };
 

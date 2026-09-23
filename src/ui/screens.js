@@ -22,6 +22,11 @@ export function createScreens(doc) {
       for (const [key, el] of Object.entries(screens)) el.hidden = key !== name;
       board.style.visibility = name === 'pause' ? 'hidden' : '';
       screens[name]?.querySelector('button')?.focus();
+      overlay.classList.toggle('fade-in', name === 'over');
+    },
+    effects(reduced) {
+      $('fx-btn').textContent = reduced ? text.effectsReduced : text.effectsFull;
+      $('fx-btn').setAttribute('aria-pressed', String(reduced));
     },
     gameOver(score, best) {
       $('final-score').textContent = num(score);
