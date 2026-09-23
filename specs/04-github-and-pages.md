@@ -53,11 +53,12 @@ pieces, glow). Produce it with a small script in `scripts/` that uses only Node'
 
 ## The publish script
 
-`scripts/setup-repo.sh`, safe to run again: refuses unless the current directory's `origin`
-(if any) is under `cocodedk`; creates `cocodedk/tetris` as public with a description, homepage
-and topics if it does not exist, otherwise just pushes `main` (never force); enables Pages with
-the workflow build type; installs the hooks; and, once CI has run, protects `main` (pull request
-required, 0 approvals, the CI check required, no force-push, no deletion). It prints each step and
+`scripts/setup-repo.sh`, safe to run again. It names the repository once, as
+`https://github.com/cocodedk/tetris.git`, and uses only that: it never reads or trusts an existing
+remote. It creates `cocodedk/tetris` as public with a description, homepage and topics if it does
+not exist; pushes `main` to that URL (never force); enables Pages with the workflow build type;
+installs the hooks; and, once CI has run, protects `main` (pull request required, 0 approvals, the
+CI check required, no force-push, no deletion). It prints each step and
 the site URL. It never uses `--no-verify` or `--force`.
 
 ## Done when
