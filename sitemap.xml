@@ -2,15 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cocodedk.github.io/tetris/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocodedk.github.io/tetris/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://cocodedk.github.io/tetris/fa/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocodedk.github.io/tetris/"/>
+    <loc>https://tetris.cocode.dk/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tetris.cocode.dk/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://tetris.cocode.dk/fa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tetris.cocode.dk/"/>
   </url>
   <url>
-    <loc>https://cocodedk.github.io/tetris/fa/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocodedk.github.io/tetris/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://cocodedk.github.io/tetris/fa/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocodedk.github.io/tetris/"/>
+    <loc>https://tetris.cocode.dk/fa/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tetris.cocode.dk/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://tetris.cocode.dk/fa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tetris.cocode.dk/"/>
   </url>
 </urlset>

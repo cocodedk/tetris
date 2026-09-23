@@ -4,9 +4,9 @@ Classic Tetris in the browser, with neon visual effects as its twist: glowing pi
 flashes, particles and a little screen shake. Seven pieces, hold, a next queue, keyboard and
 touch. Plain HTML, CSS and JavaScript: no install, no sign-up, no build step.
 
-**Play it:** [English](https://cocodedk.github.io/tetris/) · [فارسی](https://cocodedk.github.io/tetris/fa/)
+**Play it:** [English](https://tetris.cocode.dk/) · [فارسی](https://tetris.cocode.dk/fa/)
 
-[![Tetris in its neon look: the title, falling pieces and a glowing line clear](og.png)](https://cocodedk.github.io/tetris/)
+[![Tetris in its neon look: the title, falling pieces and a glowing line clear](og.png)](https://tetris.cocode.dk/)
 
 ## Controls
 

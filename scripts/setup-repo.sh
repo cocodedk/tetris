@@ -10,9 +10,9 @@ REPO_URL="https://github.com/cocodedk/tetris.git"
 
 SLUG="${REPO_URL#https://github.com/}"
 SLUG="${SLUG%.git}"
-OWNER="${SLUG%%/*}"
-NAME="${SLUG#*/}"
-SITE_URL="https://${OWNER}.github.io/${NAME}/"
+SITE_URL="https://tetris.cocode.dk/"
+DOMAIN="${SITE_URL#https://}"
+DOMAIN="${DOMAIN%/}" # the Pages custom domain; a workflow deploy needs no CNAME file
 DESCRIPTION="Classic Tetris in the browser with neon visual effects. English and Persian. No build step."
 TOPICS=(tetris game puzzle-game browser-game javascript html5-canvas github-pages)
 CI_CHECK="test" # the job name in .github/workflows/ci.yml
@@ -52,13 +52,14 @@ else
   git push "$REPO_URL" main:main
 fi
 
-step "Enabling GitHub Pages (build type: workflow)"
+step "Enabling GitHub Pages (build type: workflow, domain: $DOMAIN)"
 if gh api -X POST "repos/$SLUG/pages" -f build_type=workflow >/dev/null 2>&1; then
   echo "Pages enabled"
 else
-  gh api -X PUT "repos/$SLUG/pages" -f build_type=workflow >/dev/null
-  echo "Pages already enabled; build type set to workflow"
+  echo "Pages already enabled"
 fi
+gh api -X PUT "repos/$SLUG/pages" -f build_type=workflow -f cname="$DOMAIN" >/dev/null
+echo "build type set to workflow; custom domain set to $DOMAIN"
 gh workflow run pages.yml -R "$SLUG" --ref main && echo "Pages deploy started"
 
 step "Waiting for CI on $local_sha"

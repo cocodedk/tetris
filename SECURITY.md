@@ -13,4 +13,4 @@ You will get a reply within a week. Once a fix is published you are welcome to b
 
 ## Supported versions
 
-Only the live site at https://cocodedk.github.io/tetris/ and the `main` branch are supported.
+Only the live site at https://tetris.cocode.dk/ and the `main` branch are supported.

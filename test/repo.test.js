@@ -1,10 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 
 const at = (path) => new URL(`../${path}`, import.meta.url);
 const read = (path) => readFileSync(at(path), 'utf8');
-const SITE = 'https://cocodedk.github.io/tetris/';
+const SITE = 'https://tetris.cocode.dk/';
 const SITE_FA = `${SITE}fa/`;
 
 const FILES = [
@@ -113,6 +113,22 @@ test('setup-repo.sh names the repository once and never forces or skips hooks', 
   for (const call of sh.matchAll(/gh (repo|workflow|run) \w+ [^\n]*/g)) {
     assert.match(call[0], /"\$SLUG"/, `gh call names the repo: ${call[0]}`);
   }
+});
+
+test('setup-repo.sh sets the site URL once and tetris.cocode.dk as the Pages custom domain', () => {
+  const sh = read('scripts/setup-repo.sh');
+  assert.equal(sh.match(/tetris\.cocode\.dk/g).length, 1);
+  assert.match(sh, /^SITE_URL="https:\/\/tetris\.cocode\.dk\/"\nDOMAIN="\$\{SITE_URL#https:\/\/\}"\nDOMAIN="\$\{DOMAIN%\/\}"/m);
+  assert.match(sh, /gh api -X PUT "repos\/\$SLUG\/pages" -f build_type=workflow -f cname="\$DOMAIN"/);
+});
+
+test('no file outside spec/, specs/ and .git/ names the old github.io address', () => {
+  const walk = (dir) => readdirSync(at(dir), { withFileTypes: true })
+    .filter((e) => dir || !['.git', 'spec', 'specs'].includes(e.name))
+    .flatMap((e) => (e.isDirectory() ? walk(`${dir}${e.name}/`) : [`${dir}${e.name}`]));
+  const files = walk(''), old = ['cocodedk', 'github', 'io'].join('.'); // split so this file passes
+  assert.ok(files.includes('fa/index.html') && !files.includes('CNAME'), 'no CNAME: the domain is a setting');
+  for (const file of files) assert.ok(!read(file).includes(old), file);
 });
 
 const PAGES = [

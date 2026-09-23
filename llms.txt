@@ -10,8 +10,8 @@ Game rules live in `src/core/` and effect state in `src/fx/`, both pure and test
 ## Docs
 
 - [README](https://github.com/cocodedk/tetris/blob/main/README.md): what it is, controls, running locally, testing, layout
-- [Play (English)](https://cocodedk.github.io/tetris/): the live site
-- [Play (Persian)](https://cocodedk.github.io/tetris/fa/): the Persian page
+- [Play (English)](https://tetris.cocode.dk/): the live site
+- [Play (Persian)](https://tetris.cocode.dk/fa/): the Persian page
 
 ## Specs
 
