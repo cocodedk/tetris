@@ -21,6 +21,8 @@ same state and the same action always give the same result.
 - **Gravity and lock:** a step function `step(state, dt)` advances time in milliseconds. Gravity
   per level follows the guideline curve `(0.8 - (level-1)*0.007)^(level-1)` seconds per row. A
   grounded piece locks after 500 ms; a move or rotation resets that delay, at most 15 times.
+  The count of resets starts again whenever the piece reaches a row lower than any it has reached
+  (the guideline's extended placement). Once 15 are spent, the piece locks as soon as it is grounded.
 - **Line clears:** full rows clear and the rows above fall. Score single 100, double 300,
   triple 500, Tetris 800, each × level. A back-to-back Tetris scores ×1.5. A combo adds
   50 × combo × level.
@@ -31,6 +33,7 @@ same state and the same action always give the same result.
   `{type: "lock"}`, `{type: "clear", rows: [..], count, tetris, backToBack, combo}`,
   `{type: "hardDrop", cells, from, to}`, `{type: "levelUp", level}`, `{type: "hold"}`,
   `{type: "gameOver"}`), so later features can react with effects without reading internals.
+  Those events are the required ones; gravity moving a piece down one row needs no event.
 
 ## Done when
 
