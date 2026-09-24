@@ -43,9 +43,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://brand.cocode.dk/v1.css">
+  <script type="module" src="https://brand.cocode.dk/v1.js"></script>
   <script type="module" src="../src/main.js"></script>
 </head>
 <body>
+  <cocode-head project="تتریس" accent="#5ee3ff" on-accent="#0b0d1a" dark>
+    <a href="https://cocode.dk">cocode.dk</a>
+    <a href="../" hreflang="en">EN</a>
+    <span class="on">FA</span>
+  </cocode-head>
   <main class="game">
     <aside class="side">
       <h2 data-i18n="hold"></h2>
@@ -94,9 +101,8 @@
       </dl>
     </aside>
   </main>
-  <footer class="site-footer">
-    © ۱۴۰۵ <a href="https://cocode.dk" target="_blank" rel="noreferrer">Cocode</a> | ساخته شده توسط
-    <a href="https://linkedin.com/in/babakbandpey" target="_blank" rel="noreferrer">بابک بندپی</a>
-  </footer>
+  <cocode-foot repo="cocodedk/tetris" dark>
+    <a href="https://cocode.dk">cocode.dk</a>
+  </cocode-foot>
 </body>
 </html>

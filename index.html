@@ -40,9 +40,16 @@
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://brand.cocode.dk/v1.css">
+  <script type="module" src="https://brand.cocode.dk/v1.js"></script>
   <script type="module" src="src/main.js"></script>
 </head>
 <body>
+  <cocode-head project="Tetris" accent="#5ee3ff" on-accent="#0b0d1a" dark>
+    <a href="https://cocode.dk">cocode.dk</a>
+    <span class="on">EN</span>
+    <a href="fa/" hreflang="fa">FA</a>
+  </cocode-head>
   <main class="game">
     <aside class="side">
       <h2 data-i18n="hold"></h2>
@@ -91,9 +98,8 @@
       </dl>
     </aside>
   </main>
-  <footer class="site-footer">
-    © 2026 <a href="https://cocode.dk" target="_blank" rel="noreferrer">Cocode</a> | Created by
-    <a href="https://linkedin.com/in/babakbandpey" target="_blank" rel="noreferrer">Babak Bandpey</a>
-  </footer>
+  <cocode-foot repo="cocodedk/tetris" dark>
+    <a href="https://cocode.dk">cocode.dk</a>
+  </cocode-foot>
 </body>
 </html>

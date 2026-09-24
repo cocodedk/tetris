@@ -16,7 +16,9 @@ There is nothing to install: no npm dependencies, no bundler, no build step.
 
 ## House rules
 
-- Plain HTML, CSS and JavaScript ES modules. No dependencies, no network at runtime or in tests.
+- Plain HTML, CSS and JavaScript ES modules. No dependencies, no network in tests; at runtime
+  only the cocode.dk family frame (script and stylesheet from `brand.cocode.dk`, fonts from
+  `cocode.dk`) and, on the Persian page, Google Fonts.
 - `src/core/` (game rules) and `src/fx/` (effect state) never touch `window`, `document` or a
   canvas. Randomness and time are passed in, so `node --test` can test them directly.
 - Every behaviour you add gets a test. Pixels are not tested; the state that drives them is.

@@ -132,10 +132,8 @@ test('no file outside spec/, specs/ and .git/ names the old github.io address', 
 });
 
 const PAGES = [
-  { file: 'index.html', url: SITE, lang: 'en', locale: 'en_US', icon: 'favicon.svg',
-    footer: '© 2026 Cocode | Created by Babak Bandpey' },
-  { file: 'fa/index.html', url: SITE_FA, lang: 'fa', locale: 'fa_IR', icon: '../favicon.svg',
-    footer: '© ۱۴۰۵ Cocode | ساخته شده توسط بابک بندپی' },
+  { file: 'index.html', url: SITE, lang: 'en', locale: 'en_US', icon: 'favicon.svg', project: 'Tetris' },
+  { file: 'fa/index.html', url: SITE_FA, lang: 'fa', locale: 'fa_IR', icon: '../favicon.svg', project: 'تتریس' },
 ];
 const meta = (html, key) => html.match(new RegExp(`<meta (?:property|name)="${key}" content="([^"]*)">`))?.[1];
 
@@ -170,15 +168,16 @@ for (const page of PAGES) {
     assert.ok(ld.name);
   });
 
-  test(`${page.file} has the credit footer, its links opening in a new tab`, () => {
-    const footer = read(page.file).match(/<footer[^>]*>([\s\S]*?)<\/footer>/)[1];
-    assert.equal(footer.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim(), page.footer);
-    const links = [...footer.matchAll(/<a [^>]*>/g)].map((m) => m[0]);
-    assert.equal(links.length, 2);
-    for (const a of links) {
-      assert.match(a, /target="_blank"/);
-      assert.match(a, /rel="noreferrer"/);
-    }
+  test(`${page.file} wears the cocode.dk family frame, head and foot`, () => {
+    const html = read(page.file), COCODE = /<a href="https:\/\/cocode\.dk">cocode\.dk<\/a>/;
+    assert.ok(html.includes('<link rel="stylesheet" href="https://brand.cocode.dk/v1.css">')
+      && html.includes('<script type="module" src="https://brand.cocode.dk/v1.js"></script>'));
+    const head = html.match(/<cocode-head[^>]*>([\s\S]*?)<\/cocode-head>/);
+    assert.match(head[0], new RegExp(`project="${page.project}" accent="#5ee3ff" on-accent="#0b0d1a" dark`));
+    assert.match(head[1], COCODE);
+    const foot = html.match(/<cocode-foot[^>]*>([\s\S]*?)<\/cocode-foot>/);
+    assert.match(foot[0], /repo="cocodedk\/tetris" dark/);
+    assert.match(foot[1], COCODE);
   });
 }
 

@@ -28,11 +28,15 @@ test('each page links to the other', () => {
   assert.ok(urls(fa).includes('../'));
 });
 
-test('only the Persian page loads from the network, and only the Vazirmatn font', () => {
-  assert.deepEqual(loads(en).filter((u) => /^(https?:)?\/\//.test(u)), []);
-  const remote = loads(fa).filter((u) => /^(https?:)?\/\//.test(u));
-  assert.ok(remote.some((u) => u.startsWith('https://fonts.googleapis.com/css2?family=Vazirmatn')));
-  for (const u of remote) assert.match(u, /^https:\/\/fonts\.(googleapis|gstatic)\.com(\/|$)/);
+test('both pages load only the cocode.dk family frame, and the Persian page also Vazirmatn', () => {
+  const remoteEn = loads(en).filter((u) => /^(https?:)?\/\//.test(u));
+  assert.ok(remoteEn.includes('https://brand.cocode.dk/v1.css'));
+  assert.ok(remoteEn.includes('https://brand.cocode.dk/v1.js'));
+  for (const u of remoteEn) assert.match(u, /^https:\/\/brand\.cocode\.dk\//);
+
+  const remoteFa = loads(fa).filter((u) => /^(https?:)?\/\//.test(u));
+  assert.ok(remoteFa.some((u) => u.startsWith('https://fonts.googleapis.com/css2?family=Vazirmatn')));
+  for (const u of remoteFa) assert.match(u, /^https:\/\/(brand\.cocode\.dk\/|fonts\.(googleapis|gstatic)\.com(\/|$))/);
 });
 
 test('every data-i18n key on both pages is in the table', () => {
@@ -43,9 +47,10 @@ test('every data-i18n key on both pages is in the table', () => {
   }
 });
 
-test('both pages have the same structure apart from their head, links and footer', () => {
+test('both pages have the same structure apart from their head, links and frame', () => {
   const body = (html) => html.slice(html.indexOf('<body>'))
     .replace(/href="[^"]*" hreflang="\w+" lang="\w+"/, '')
-    .replace(/<footer[\s\S]*<\/footer>/, '');
+    .replace(/<cocode-head[\s\S]*?<\/cocode-head>/, '')
+    .replace(/<cocode-foot[\s\S]*?<\/cocode-foot>/, '');
   assert.equal(body(fa), body(en));
 });
