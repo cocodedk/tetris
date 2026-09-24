@@ -7,7 +7,9 @@ Build on the existing core; change it only to fix a real defect, with a test.
 
 - **Pages:** `index.html` (English, `lang="en"`) and `fa/index.html` (Persian, `lang="fa"`,
   `dir="rtl"`). Both load `src/main.js` as a module and one shared stylesheet. The Persian page
-  uses the Vazirmatn font from Google Fonts; nothing else loads from the network.
+  uses the Vazirmatn font from Google Fonts. Since spec 07, both pages also load the cocode.dk
+  family frame — its script and stylesheet from `brand.cocode.dk`, its fonts from `cocode.dk` —
+  and nothing else loads from the network.
 - **Layout:** the board in the centre; hold on one side; the next-5 preview, score, level and
   lines on the other. It fits a phone in portrait (360 px wide) and a desktop, with no page scroll
   while playing. The canvas is sharp on high-density screens (device pixel ratio).
