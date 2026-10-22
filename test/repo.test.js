@@ -52,11 +52,11 @@ test('dependabot updates github-actions weekly', () => {
   assert.match(dep, /interval: weekly/);
 });
 
-test('CI runs node --test on Node 22 for pull requests and pushes to any branch', () => {
+test('CI runs node --test on Node 26 for pull requests and pushes to any branch', () => {
   const ci = read('.github/workflows/ci.yml');
   assert.match(ci, /pull_request:/);
   assert.match(ci, /branches: \['\*\*'\]/);
-  assert.match(ci, /node-version: 22/);
+  assert.match(ci, /node-version: 26/);
   assert.match(ci, /run: node --test/);
   assert.match(ci, /^  test:$/m, 'setup-repo.sh requires the check named "test"');
 });
