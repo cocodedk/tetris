@@ -5,12 +5,21 @@
     <loc>https://tetris.cocode.dk/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://tetris.cocode.dk/"/>
     <xhtml:link rel="alternate" hreflang="fa" href="https://tetris.cocode.dk/fa/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tetris.cocode.dk/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tetris.cocode.dk/"/>
   </url>
   <url>
     <loc>https://tetris.cocode.dk/fa/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://tetris.cocode.dk/"/>
     <xhtml:link rel="alternate" hreflang="fa" href="https://tetris.cocode.dk/fa/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tetris.cocode.dk/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tetris.cocode.dk/"/>
+  </url>
+  <url>
+    <loc>https://tetris.cocode.dk/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tetris.cocode.dk/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://tetris.cocode.dk/fa/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tetris.cocode.dk/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tetris.cocode.dk/"/>
   </url>
 </urlset>

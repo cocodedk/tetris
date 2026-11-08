@@ -22,12 +22,12 @@ The machine-level mechanics (the suite, the build, the artifact) are in
 | `src/fx/` | Effect state: particles, shake, flashes, timers. Pure, stepped by `dt`. | no |
 | `src/ui/` | Canvas drawing, input, screens, text. | yes |
 | `test/` | `node:test` suites, named `*.test.js`, mirroring `src/`. | no |
-| `index.html`, `fa/index.html` | English and Persian pages; both load `src/main.js`. | — |
+| `index.html`, `fa/index.html`, `es/index.html` | English, Persian and Spanish pages; each loads `src/main.js`. | — |
 
 ## House rules
 
 - Plain HTML, CSS and JavaScript ES modules. No npm dependencies, no bundler, no build step,
-  no network in tests, and at runtime only the cocode.dk family frame on both pages (its script
+  no network in tests, and at runtime only the cocode.dk family frame on every page (its script
   and stylesheet from `brand.cocode.dk`, its fonts from `cocode.dk`) and the Persian page's
   Vazirmatn font from Google Fonts.
 - `src/core/` and `src/fx/` never touch `window`, `document` or canvas, so `node --test` can

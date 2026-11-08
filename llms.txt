@@ -1,7 +1,7 @@
 # Tetris
 
 > Classic Tetris in the browser, with neon visual effects as its twist. Plain HTML, CSS and
-> JavaScript ES modules: no dependencies, no build step. English and Persian pages. Made by
+> JavaScript ES modules: no dependencies, no build step. English, Persian and Spanish pages. Made by
 > Babak Bandpey at Cocode (https://cocode.dk). Licensed Apache-2.0.
 
 Game rules live in `src/core/` and effect state in `src/fx/`, both pure and tested with
@@ -12,6 +12,7 @@ Game rules live in `src/core/` and effect state in `src/fx/`, both pure and test
 - [README](https://github.com/cocodedk/tetris/blob/main/README.md): what it is, controls, running locally, testing, layout
 - [Play (English)](https://tetris.cocode.dk/): the live site
 - [Play (Persian)](https://tetris.cocode.dk/fa/): the Persian page
+- [Play (Spanish)](https://tetris.cocode.dk/es/): the Spanish page
 
 ## Specs
 

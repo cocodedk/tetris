@@ -2,12 +2,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { STRINGS, toPersianDigits, formatNumber, strings } from '../../src/ui/i18n.js';
 
-test('every i18n key exists in both languages, none empty', () => {
+test('every i18n key exists in every language, none empty', () => {
   const en = Object.keys(STRINGS.en).sort();
-  const fa = Object.keys(STRINGS.fa).sort();
-  assert.deepEqual(fa, en);
-  for (const lang of ['en', 'fa']) {
-    for (const [key, value] of Object.entries(STRINGS[lang])) {
+  for (const [lang, table] of Object.entries(STRINGS)) {
+    assert.deepEqual(Object.keys(table).sort(), en, lang);
+    for (const [key, value] of Object.entries(table)) {
       assert.ok(typeof value === 'string' && value.trim(), `${lang}.${key}`);
     }
   }
@@ -26,5 +25,5 @@ test('numbers show Persian digits on the Persian page and Latin digits on the En
 
 test('an unknown language falls back to English', () => {
   assert.equal(strings('de'), STRINGS.en);
-  assert.equal(strings('fa'), STRINGS.fa);
+  for (const lang of Object.keys(STRINGS)) assert.equal(strings(lang), STRINGS[lang]);
 });

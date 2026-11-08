@@ -4,7 +4,7 @@ Classic Tetris in the browser, with neon visual effects as its twist: glowing pi
 flashes, particles and a little screen shake. Seven pieces, hold, a next queue, keyboard and
 touch. Plain HTML, CSS and JavaScript: no install, no sign-up, no build step.
 
-**Play it:** [English](https://tetris.cocode.dk/) · [فارسی](https://tetris.cocode.dk/fa/)
+**Play it:** [English](https://tetris.cocode.dk/) · [فارسی](https://tetris.cocode.dk/fa/) · [Español](https://tetris.cocode.dk/es/)
 
 [![Tetris in its neon look: the title, falling pieces and a glowing line clear](og.png)](https://tetris.cocode.dk/)
 
@@ -45,7 +45,8 @@ Any static server works. With Python:
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000/ (English) or http://localhost:8000/fa/ (Persian).
+Then open http://localhost:8000/ (English), http://localhost:8000/fa/ (Persian) or
+http://localhost:8000/es/ (Spanish).
 
 ## Test
 
@@ -61,9 +62,9 @@ Node 22 or newer. The suite has no dependencies and needs no network.
 |---|---|
 | `src/core/` | Game rules: board, pieces, rotation, scoring. Pure functions, no DOM. |
 | `src/fx/` | Effect state: particles, shake, flashes, timers. Pure, stepped by `dt`. |
-| `src/ui/` | Canvas drawing, input, screens, text in both languages. |
-| `src/main.js` | Wires it together; loaded by both pages. |
-| `index.html`, `fa/index.html` | The English and Persian pages. |
+| `src/ui/` | Canvas drawing, input, screens, text in all three languages. |
+| `src/main.js` | Wires it together; loaded by every page. |
+| `index.html`, `fa/index.html`, `es/index.html` | The English, Persian and Spanish pages. |
 | `test/` | `node:test` suites mirroring `src/`, plus checks on the repository itself. |
 | `scripts/` | `install-hooks.sh`, `setup-repo.sh` (publishing), `render-og.js` (the social image). |
 | `spec/`, `specs/` | The product brief and one spec per feature. |

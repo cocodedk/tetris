@@ -23,8 +23,8 @@ There is nothing to install: no npm dependencies, no bundler, no build step.
   canvas. Randomness and time are passed in, so `node --test` can test them directly.
 - Every behaviour you add gets a test. Pixels are not tested; the state that drives them is.
 - Keep every code file under 200 lines. Split into helpers when one grows.
-- Both pages, `index.html` (English) and `fa/index.html` (Persian), must keep working. New text
-  goes into both languages in `src/ui/i18n.js`.
+- Every page, `index.html` (English), `fa/index.html` (Persian) and `es/index.html` (Spanish),
+  must keep working. New text goes into all three languages in `src/ui/i18n.js`.
 
 ## Commits and pull requests
 
