@@ -13,7 +13,7 @@ SLUG="${SLUG%.git}"
 SITE_URL="https://tetris.cocode.dk/"
 DOMAIN="${SITE_URL#https://}"
 DOMAIN="${DOMAIN%/}" # the Pages custom domain; a workflow deploy needs no CNAME file
-DESCRIPTION="Classic Tetris in the browser with neon visual effects. English and Persian. No build step."
+DESCRIPTION="Classic Tetris in the browser with neon visual effects. English, Persian and Spanish. No build step."
 TOPICS=(tetris game puzzle-game browser-game javascript html5-canvas github-pages)
 CI_CHECK="test" # the job name in .github/workflows/ci.yml
 
@@ -93,3 +93,4 @@ step "Done"
 echo "Repository: https://github.com/$SLUG"
 echo "Site:       $SITE_URL"
 echo "Persian:    ${SITE_URL}fa/"
+echo "Spanish:    ${SITE_URL}es/"

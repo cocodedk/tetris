@@ -1,8 +1,8 @@
-// Every piece of UI text, in English and Persian. Pure: no DOM.
+// Every piece of UI text, in English, Persian and Spanish. Pure: no DOM.
 export const STRINGS = {
   en: {
     title: 'Tetris',
-    otherLanguage: 'فارسی',
+    board: 'Game board',
     start: 'Start',
     playAgain: 'Play again',
     resume: 'Resume',
@@ -28,7 +28,7 @@ export const STRINGS = {
   },
   fa: {
     title: 'تتریس',
-    otherLanguage: 'English',
+    board: 'صفحهٔ بازی',
     start: 'شروع',
     playAgain: 'بازی دوباره',
     resume: 'ادامه',
@@ -51,6 +51,32 @@ export const STRINGS = {
     controlTouch: 'لمسی: ضربه می‌چرخاند، کشیدن جابه‌جا می‌کند، کشیدن تند به پایین می‌اندازد',
     effectsFull: 'جلوه‌ها: کامل',
     effectsReduced: 'جلوه‌ها: کم',
+  },
+  es: {
+    title: 'Tetris',
+    board: 'Tablero de juego',
+    start: 'Jugar',
+    playAgain: 'Jugar de nuevo',
+    resume: 'Continuar',
+    paused: 'Juego pausado',
+    gameOver: 'Fin del juego',
+    score: 'Puntuación',
+    best: 'Mejor puntuación',
+    level: 'Nivel',
+    lines: 'Líneas',
+    hold: 'Cambiar bloque',
+    next: 'Siguientes bloques',
+    pause: 'Pausar juego',
+    controlsTitle: 'Controles',
+    controlMove: '← → mover',
+    controlSoft: '↓ caída suave',
+    controlHard: 'Espacio caída dura',
+    controlRotate: '↑ o X rotar, Z o Ctrl rotar en sentido contrario',
+    controlHold: 'C o Shift cambiar bloque',
+    controlPause: 'P o Esc pausar',
+    controlTouch: 'Táctil: toque para rotar, arrastrar para mover, deslizar hacia abajo para caer',
+    effectsFull: 'Efectos: máximo',
+    effectsReduced: 'Efectos: mínimo',
   },
 };
 

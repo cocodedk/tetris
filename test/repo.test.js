@@ -5,7 +5,11 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 const at = (path) => new URL(`../${path}`, import.meta.url);
 const read = (path) => readFileSync(at(path), 'utf8');
 const SITE = 'https://tetris.cocode.dk/';
-const SITE_FA = `${SITE}fa/`;
+const PAGES = [
+  { file: 'index.html', url: SITE, lang: 'en', locale: 'en_US', icon: 'favicon.svg', project: 'Tetris' },
+  { file: 'fa/index.html', url: `${SITE}fa/`, lang: 'fa', locale: 'fa_IR', icon: '../favicon.svg', project: 'تتریس' },
+  { file: 'es/index.html', url: `${SITE}es/`, lang: 'es', locale: 'es_ES', icon: '../favicon.svg', project: 'Tetris' },
+];
 
 const FILES = [
   'README.md', 'LICENSE', 'CONTRIBUTING.md', 'SECURITY.md', '.gitignore', '.gitattributes', 'llms.txt',
@@ -21,9 +25,9 @@ test('every public, CI, hook and site file exists', () => {
   for (const file of FILES) assert.ok(existsSync(at(file)), file);
 });
 
-test('README links both pages, shows og.png and credits Cocode', () => {
+test('README links every page, shows og.png and credits Cocode', () => {
   const readme = read('README.md');
-  for (const s of [SITE, SITE_FA, 'فارسی', '(og.png)', 'python3 -m http.server 8000', 'node --test',
+  for (const s of [...PAGES.map((p) => p.url), 'فارسی', 'Español', '(og.png)', 'python3 -m http.server 8000', 'node --test',
     'Made by Babak Bandpey at [Cocode](https://cocode.dk)']) assert.ok(readme.includes(s), s);
 });
 
@@ -73,7 +77,7 @@ test('pages.yml deploys only the site files, never cancelling a deploy', () => {
   const copies = [...pages.matchAll(/^\s*cp -r (.+) _site\/$/gm)];
   assert.equal(copies.length, 1);
   assert.deepEqual(copies[0][1].split(/\s+/).sort(),
-    ['fa', 'favicon.svg', 'index.html', 'og.png', 'robots.txt', 'sitemap.xml', 'src', 'style.css']);
+    ['es', 'fa', 'favicon.svg', 'index.html', 'og.png', 'robots.txt', 'sitemap.xml', 'src', 'style.css']);
 });
 
 test('install-hooks.sh makes the hooks executable and sets core.hooksPath', () => {
@@ -131,10 +135,6 @@ test('no file outside spec/, specs/ and .git/ names the old github.io address', 
   for (const file of files) assert.ok(!read(file).includes(old), file);
 });
 
-const PAGES = [
-  { file: 'index.html', url: SITE, lang: 'en', locale: 'en_US', icon: 'favicon.svg', project: 'Tetris' },
-  { file: 'fa/index.html', url: SITE_FA, lang: 'fa', locale: 'fa_IR', icon: '../favicon.svg', project: 'تتریس' },
-];
 const meta = (html, key) => html.match(new RegExp(`<meta (?:property|name)="${key}" content="([^"]*)">`))?.[1];
 
 for (const page of PAGES) {
@@ -144,8 +144,7 @@ for (const page of PAGES) {
     assert.ok(title.length > 10, 'a page-specific title');
     assert.ok(meta(html, 'description').length > 50, 'a page-specific description');
     assert.ok(html.includes(`<link rel="canonical" href="${page.url}">`));
-    assert.ok(html.includes(`<link rel="alternate" hreflang="en" href="${SITE}">`));
-    assert.ok(html.includes(`<link rel="alternate" hreflang="fa" href="${SITE_FA}">`));
+    for (const p of PAGES) assert.ok(html.includes(`<link rel="alternate" hreflang="${p.lang}" href="${p.url}">`), p.lang);
     assert.ok(html.includes(`<link rel="alternate" hreflang="x-default" href="${SITE}">`));
     assert.ok(html.includes(`<link rel="icon" href="${page.icon}" type="image/svg+xml">`));
     assert.equal(meta(html, 'og:type'), 'website');
@@ -189,10 +188,10 @@ test('og.png is a PNG of exactly 1200×630', () => {
   assert.equal(png.readUInt32BE(20), 630);
 });
 
-test('robots.txt allows all and links the sitemap; the sitemap lists both pages', () => {
+test('robots.txt allows all and links the sitemap; the sitemap lists every page', () => {
   const robots = read('robots.txt');
   assert.match(robots, /User-agent: \*\nAllow: \//);
   assert.ok(robots.includes(`Sitemap: ${SITE}sitemap.xml`));
   const locs = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  assert.deepEqual(locs, [SITE, SITE_FA]);
+  assert.deepEqual(locs, PAGES.map((p) => p.url));
 });

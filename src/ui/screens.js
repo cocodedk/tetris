@@ -2,13 +2,13 @@
 import { strings, formatNumber } from './i18n.js';
 
 export function createScreens(doc) {
-  const lang = doc.documentElement.lang === 'fa' ? 'fa' : 'en';
+  const lang = doc.documentElement.lang;
   const text = strings(lang);
   const $ = (id) => doc.getElementById(id);
   const num = (n) => formatNumber(n, lang);
 
   for (const el of doc.querySelectorAll('[data-i18n]')) el.textContent = text[el.dataset.i18n];
-  doc.title = text.title;
+  for (const el of doc.querySelectorAll('[data-i18n-label]')) el.setAttribute('aria-label', text[el.dataset.i18nLabel]);
 
   const overlay = $('overlay');
   const screens = { start: $('screen-start'), pause: $('screen-pause'), over: $('screen-over') };

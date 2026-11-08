@@ -21,7 +21,8 @@ Anyone who knows Tetris and wants a beautiful version that opens instantly from 
    and Tetrises, a moving background that reacts to the level, and big moments for a Tetris and a
    level-up. It stays smooth (60 frames per second on an ordinary laptop) and respects the
    player's reduced-motion setting.
-3. It works with a keyboard and with touch, in English and in Persian (right to left).
+3. It works with a keyboard and with touch, in English, in Persian (right to left) and, since
+   spec 08, in Spanish.
 4. It is a public GitHub repository, `cocodedk/tetris`, with green CI, hooks, the usual public
    files, and a GitHub Pages site at https://tetris.cocode.dk/ where the game is playable,
    with complete SEO and a real 1200×630 social image.
@@ -36,6 +37,8 @@ Anyone who knows Tetris and wants a beautiful version that opens instantly from 
    the script the owner runs to publish it.
 5. `specs/05-webmcp.md` — tools an AI agent in the browser can use to play, one placement per piece.
 6. `specs/06-custom-domain.md` — every stated URL moves to the site's own domain.
+7. `specs/07-cocode-frame.md` — the cocode.dk family frame, head and foot, on every page.
+8. `specs/08-spanish.md` — a third language, Spanish, from a volunteer's translation.
 
 ## Left out on purpose
 
