@@ -128,7 +128,7 @@ test('setup-repo.sh sets the site URL once and tetris.cocode.dk as the Pages cus
 
 test('no file outside spec/, specs/ and .git/ names the old github.io address', () => {
   const walk = (dir) => readdirSync(at(dir), { withFileTypes: true })
-    .filter((e) => dir || !['.git', 'spec', 'specs'].includes(e.name))
+    .filter((e) => !e.isSymbolicLink() && (dir || !['.git', 'spec', 'specs'].includes(e.name)))
     .flatMap((e) => (e.isDirectory() ? walk(`${dir}${e.name}/`) : [`${dir}${e.name}`]));
   const files = walk(''), old = ['cocodedk', 'github', 'io'].join('.'); // split so this file passes
   assert.ok(files.includes('fa/index.html') && !files.includes('CNAME'), 'no CNAME: the domain is a setting');

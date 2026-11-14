@@ -7,3 +7,6 @@ Thumbs.db
 .idea/
 .vscode/
 .zvec-grep/
+
+# Project notes live in a private repo; memory is a symlink to them
+memory
